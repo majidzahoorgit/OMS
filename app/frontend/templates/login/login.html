@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Sign-In{% endblock %}
+{% block content %}
+  
+  <form class="form-signin" method="POST" action="">
+    {{ form.csrf_token }}
+      <div class="text-center mb-4">
+        <img class="mb-4" src="{{ url_for('static', filename='images/logo.png')}}" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Sign-In</h1>
+      </div>
+
+      <div class="text-center mb-4">
+        {%with messages=get_flashed_messages(with_categories=true)%}
+          {%if messages%}
+            {%for category,message in messages%}
+              <div class="alter alert-{{category}}">
+                {{message}}
+              </div>
+            {%endfor%}
+          {%endif%}
+        {%endwith%}
+      </div>
+      <div class="form-label-group">
+        {{form.username(class="form-control")}}
+        {{form.username.label(class="form-control-label")}}
+        <!-- input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputEmail">Email address</label> -->
+      </div>
+
+      <div class="form-label-group">
+        {{form.password(class="form-control")}}
+        {{form.password.label(class="form-control-label")}}
+        <!-- <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <label for="inputPassword">Password</label> -->
+      </div>
+
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      {{ form.submit(class="btn btn-primary btn-block-mb-4") }}
+      <!-- <button type="submit" class="btn btn-primary btn-block mb-4">Sign In</button> -->
+      
+    </form>
+{% endblock %}
